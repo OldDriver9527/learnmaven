@@ -28,16 +28,29 @@ public class LearnMaven {
     父POM
     maven中存在默认父POM，所有POM默认继承父POM
     POM继承
-    在子POM中声明其父模块，POM继承目的在于消除重复配置
+    在子POM中声明其父POM，POM继承目的在于消除重复配置，父POM打包方式必须是pom
     子POM会继承父POM中的依赖列表，
     POM聚合
-    在父POM中声明其子模块，父POM打包方式必须是pom，对父模块的命令同时也会应用于子模块
+    在父POM中声明其子模块，对父模块的命令同时也会应用于子模块，父POM打包方式必须是pom
     4.依赖机制
     依赖范围
+    存在6种范围，compile，provided，runtime，test，system，import
+    compile
+    默认值，compile范围依赖在所有类路径中可用
+    test
+    test范围，依赖仅在编译测试代码，运行测试阶段可用
+    provided
+    provided范围，期望jdk或容器在运行时提供该依赖，该范围依赖仅在编译主代码，测试代码，运行单元测试时可用，不会包含进工件包
+    import
+    import范围，在dependencyManagement中导入指定POM的dependencyManagement列表
     依赖管理
-    依赖管理用于集中依赖信息，使用场景如在父POM中使用dependencyManagement元素定义依赖完整信息，
+    依赖管理用于集中依赖信息
+    使用场景之一在父POM中使用dependencyManagement元素定义依赖完整信息，在dependencyManagement中声明的依赖不会引入项目
     在子POM中使用dependencies元素简单引用依赖，通过groupId, artifactId, type, classifier与dependencyManagement中依赖进行匹配
     type默认值为jar，classifier默认值为null
+    导入依赖
+    由于子POM只能有一个父POM，具有单继承局限性，将所有依赖信息定义在父POM的dependencyManagement中，会导致pom.xml过长
+    此时
 
 
 
