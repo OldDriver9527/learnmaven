@@ -48,6 +48,7 @@ public class LearnMaven {
     system范围依赖在编译，测试classpath中可用
     import
     import范围依赖不对三种classpath产生影响
+    ----------------------------------------------------------------------------
     依赖管理
     依赖管理用于集中依赖信息
     使用场景之一在父POM中使用dependencyManagement元素定义依赖完整信息，在dependencyManagement中声明的依赖不会引入项目
@@ -56,6 +57,7 @@ public class LearnMaven {
     导入依赖
     由于子POM只能有一个父POM，具有单继承局限性，将所有依赖信息定义在父POM的dependencyManagement中，会导致pom.xml过长
     可以在dependencyManagement中使用import范围依赖，将指定POM中的dependencyManagement配置导入并合并到当前POM中
+    ----------------------------------------------------------------------------
     BOM bill of materials
     BOM是特殊的POM，专门用于被其他POM导入dependencyManagement配置
     5.pom.xml
@@ -71,10 +73,10 @@ public class LearnMaven {
     定义工件的打包方式
     version
     定义项目生成工件的版本
+    properties
+    定义maven属性，在POM中任意位置通过${propertyName}获取属性值
 
-
-
-    4.过滤属性文件
+    过滤属性文件
     从pom.xml，settings.xml，自定义属性文件中获取属性值动态生成属性文件
     从pom.xml中获取属性值，需将filtering配置为true
     从自定义属性文件中获取属性值，需将filter配置为属性文件路径
