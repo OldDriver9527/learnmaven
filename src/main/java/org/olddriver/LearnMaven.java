@@ -33,6 +33,11 @@ public class LearnMaven {
     POM聚合
     在父POM中声明其子模块，对父模块的命令同时也会应用于子模块，父POM打包方式必须是pom
     4.依赖机制
+    使用外部依赖
+    dependencies元素中声明所有外部依赖，外部依赖至少指明groupId，artifactId，version，scope
+    依赖坐标由groupId，artifactId，version，packaging，classifier构成
+    maven优先在本地仓库寻找依赖，若本地仓库中不存在，maven从远程仓库下载依赖存储在本地仓库中
+    ----------------------------------------------------------------------------
     依赖范围
     maven在编译，测试，运行时使用三套独立的classpath，依赖范围用于控制依赖与三套classpath的关系
     存在6种依赖范围，compile，provided，runtime，test，system，import
@@ -61,19 +66,21 @@ public class LearnMaven {
     BOM bill of materials
     BOM是特殊的POM，专门用于被其他POM导入dependencyManagement配置
     5.pom.xml
-    project
+    <project>
     pom.xml中根元素
-    modelVersion
+    <project><modelVersion>
     定义POM使用的对象模型版本
-    groupId
+    <project><groupId>
     定义创建项目的组织或组的id
-    artifactId
-    定义项目生成工件的唯一标识，工件通常是jar文件
-    packaging
-    定义工件的打包方式
-    version
-    定义项目生成工件的版本
-    properties
+    <project><artifactId>
+    定义项目生成构件的唯一标识，构件通常是jar文件
+    <project><packaging>
+    定义构件的打包方式
+    <project><version>
+    定义项目生成构件的版本
+    <project><name>
+    定义项目名称
+    <project><properties>
     定义maven属性，在POM中任意位置通过${propertyName}获取属性值
 
     过滤属性文件
