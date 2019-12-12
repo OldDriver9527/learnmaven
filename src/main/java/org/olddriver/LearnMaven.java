@@ -3,7 +3,7 @@ package org.olddriver;
 public class LearnMaven {
     /*
     1.maven介绍
-    maven是可以用于构建和管理任何java项目的工具
+    maven是java项目管理工具，可以用于构建项目，管理依赖，管理项目信息
     maven使用POM构建项目，POM在pom.xml中定义，POM是maven的基本工作单元
     2.项目构建生命周期
     maven将项目构建的生命周期总结为三套，clean，default，site，每个生命周期分为多个阶段，靠后的阶段依赖于靠前的阶段
