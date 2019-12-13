@@ -15,8 +15,8 @@ public class LearnMaven {
     通过compile命令调用default生命周期中compile阶段，依次执行compile阶段前的所有阶段，编译主代码，字节码文件输出到target中
     通过test-compile命令调用default生命周期中test-compile阶段，执行test-compile阶段前的所有阶段
     通过test命令调用default生命周期中test阶段，执行test阶段前的所有阶段，编译主代码，测试代码，并运行单元测试，字节码文件输出到target中
-    通过package命令调用default生命周期中package阶段，调用将工件打包
-    通过install命令调用default生命周期中install阶段，将工件包安装进本地仓库
+    通过package命令调用default生命周期中package阶段，将构件打包
+    通过install命令调用default生命周期中install阶段，将构件包安装进本地仓库
     ----------------------------------------------------------------------------
     site生命周期负责？？？
     ----------------------------------------------------------------------------
@@ -33,9 +33,15 @@ public class LearnMaven {
     POM聚合
     在父POM中声明其子模块，对父模块的命令同时也会应用于子模块，父POM打包方式必须是pom
     4.依赖机制
-    使用外部依赖
-    dependencies元素中声明所有外部依赖，外部依赖至少指明groupId，artifactId，version，scope
+    依赖坐标
     依赖坐标由groupId，artifactId，version，packaging，classifier构成
+    ----------------------------------------------------------------------------
+    使用外部依赖
+    dependencies元素中声明所有外部依赖，外部依赖至少指明groupId，artifactId，version，scope，
+    还可以定义type，optional，exclusions
+    type指明依赖类型，默认值为jar
+    optional标记依赖是否可选
+    exclusions用于排除传递性依赖
     maven优先在本地仓库寻找依赖，若本地仓库中不存在，maven从远程仓库下载依赖存储在本地仓库中
     ----------------------------------------------------------------------------
     依赖范围
@@ -53,6 +59,16 @@ public class LearnMaven {
     system范围依赖在编译，测试classpath中可用
     import
     import范围依赖不对三种classpath产生影响
+    ----------------------------------------------------------------------------
+    传递依赖
+    当POM中引入一个依赖，maven会解析依赖POM，将POM中包含的必要依赖也引入到当前POM中
+    传递依赖的范围由第一直接依赖范围，第二直接依赖范围决定
+    第二直接依赖范围    compile       test      provided    runtime
+    第一直接依赖范围
+    compile            compile      不传递     不传递       runtime
+    test               test         不传递     不传递       test
+    provided           provided     不传递     provided    provided
+    runtime            runtime      不传递     不传递       runtime
     ----------------------------------------------------------------------------
     依赖管理
     依赖管理用于集中依赖信息
